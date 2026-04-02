@@ -1,0 +1,224 @@
+\documentclass[conference]{IEEEtran}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--------------------------------------------------------------
+% Document & Font Setup
+%--------------------------------------------------------------
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+%--------------------------------------------------------------
+% Common Packages
+%--------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[dvipsnames,x11names,svgnames]{xcolor}
+\usepackage{url}
+
+%--------------------------------------------------------------
+% Math & Science Packages
+%--------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{siunitx}
+\DeclareSIUnit{\rpm}{RPM}
+\DeclareSIUnit{\au}{AU}
+
+%--------------------------------------------------------------
+% Referencing & Hyperlinks
+%--------------------------------------------------------------
+\usepackage[backend=bibtex, sorting=none, firstinits=true, abbreviate=true, url=false, isbn=false]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red
+}
+
+%--------------------------------------------------------------
+% Headers & Footers
+%--------------------------------------------------------------
+\usepackage{fancyhdr, lastpage}
+
+\fancypagestyle{mainmatter}{
+    \fancyhf{}
+    \lhead{2025}
+    \rhead{EPSRC}
+    \cfoot{Page \thepage\ of \pageref{LastPage}}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+}
+
+%--------------------------------------------------------------
+% Algorithm Setup
+%--------------------------------------------------------------
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%--------------------------------------------------------------
+% Plots & Graphics
+%--------------------------------------------------------------
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\pgfplotsset{
+  myfigure/.style={
+    width=8cm,
+    height=5cm,
+    line width=1pt,
+    tick label style={font=\huge},
+    label style={font=\small},
+    title style={font=\small},
+    legend style={font=\footnotesize},
+  }
+}
+
+\usepackage{tikz}
+
+% TikZ
+\usetikzlibrary{
+    shapes.geometric,
+    shapes.misc,
+    arrows.meta,
+    positioning,
+    matrix,
+    calc,
+    fit,
+    fadings,
+    patterns,
+    plotmarks,
+    decorations.pathmorphing
+}
+\tikzset{font={\fontsize{10pt}{12}\selectfont}}
+\tikzset{
+    startstop/.style = {rectangle, rounded corners, ...},
+    IO/.style        = {ellipse, ...},
+    arrow/.style     = {thick,->,>={Stealth}},
+    block/.style     = {rectangle, draw, ...},
+    sum/.style       = {draw, circle, ...},
+    bag/.style       = {align=left}
+}
+
+% Custom colors
+\definecolor{sandybrown}{rgb}{0.96, 0.64, 0.38}
+
+%--------------------------------------------------------------
+% Custom Commands, Environments, & Numbering
+%--------------------------------------------------------------
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{algorithm}{section}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{assumption}{Assumption}[section]
+\newtheorem{assumptionx}{Assumption}
+\renewcommand{\theassumptionx}{\Alph{assumptionx}}
+\newtheorem{certificate}{Certificate}[section]
+\newtheorem{property}{Property}[section]
+
+\newcommand{\Argmin}{\ensuremath{\mathop{\mathrm{argmin}}}}
+\newcommand{\Argmax}{\ensuremath{\mathop{\mathrm{argmax}}}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\traj}{\{x(k)\}_{k=0,\dots,T}}
+\newcommand{\dgap}{d}
+\newcommand\given[1][]{\:#1\vert\:}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\DeclareCiteCommand{\capcite}
+  {\usebibmacro{prenote}}
+  {\bibhyperref{\printnames{labelname} (\printfield{year})}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{TITLE}
+
+\author{\IEEEauthorblockN{Jannik Gräbner, Jack Sydney Schwartz, Claudio Vestini}
+\IEEEauthorblockA{\textit{Mechanical \& Aerospace Engineering} \\
+\textit{Princeton University}\\
+Princeton, NJ, United States \\
+\textcolor{red}{JG EMAIL}, \textcolor{red}{JSS EMAIL}, claudio.vestini@keble.ox.ac.uk}
+}
+
+\maketitle
+
+\begin{abstract}
+\textcolor{red}{ABSTRACT}
+\end{abstract}
+
+\section{Introduction} \label{sec:introduction}
+
+\textcolor{red}{INTRODUCTION}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/ONECOL_FIGURE.jpg}
+    \caption{\textcolor{red}{ONECOL FIGURE CAPTION}.}
+    \label{fig:SAMPLE_ONECOL_FIGURE}
+\end{figure}
+
+
+\section{Numerical experiments}
+\label{sec:numerical_experiments}
+
+\begin{center}
+    \small
+    \url{https://github.com/ClouD-161803/fossil_scenario.git}
+\end{center}
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Figures/TWOCOL_FIGURE1.pdf}
+        \caption{\textcolor{red}{TWOCOL FIGURE 1 SUBCAPTION}.}
+        \label{fig:SAMPLE_TWOCOL_FIGURE1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Figures/TWOCOL_FIGURE2.pdf}
+        \caption{\textcolor{red}{TWOCOL FIGURE 2 SUBCAPTION}.}
+        \label{fig:SAMPLE_TWOCOL_FIGURE2}
+    \end{subfigure}
+    \caption{\textcolor{red}{TWOCOL FIGURE CAPTION}.}
+    \label{fig:SAMPLE_TWOCOL_FIGURE}
+\end{figure*}
+
+\printbibliography
+
+\clearpage
+\appendix
+\section{Appendix}
+\label{app:proofs}
+
+\textcolor{red}{APPENDIX}
+
+\end{document}
