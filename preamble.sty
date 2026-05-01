@@ -1,0 +1,255 @@
+
+% % \usepackage[margin=1in]{geometry}
+% \usepackage[margin=0.5in]{geometry} 
+
+
+
+\usepackage[a4paper,
+            bindingoffset=0in,
+            left=0.95in,
+            right=0.95in,
+            top=0.85in,
+            bottom=0.75in,
+            footskip=.25in]{geometry}
+
+
+% \usepackage[a4paper,
+%             bindingoffset=0in,
+%             left=0.8in,
+%             right=0.8in,
+%             top=0.8in,
+%             bottom=0.75in,
+%             footskip=.25in]{geometry}
+
+
+
+
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{caption}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{faktor}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{bbm}
+
+
+\setlength{\parskip}{0.25cm}
+
+
+
+\usepackage{keytheorems}
+\usepackage[thmtools-compat]{keytheorems}
+
+
+
+\usepackage[hidelinks]{hyperref}
+% \usepackage{cleveref}
+% \usepackage{zref-clever}
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+
+
+% \usepackage{thmtools}
+
+
+
+
+
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{font=bf}  % Makes the captions on figures bold (including the "Figure X")
+\captionsetup[subfigure]{font=normalfont} % Keeps the captions on subfigures normal text (not bold).
+
+
+
+
+
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \setlength{\headheight}{14.5pt}
+% \lhead{Jack Sydney Schwartz}
+% \rhead{MAT 522}
+
+
+
+
+\graphicspath{ {./images/} }
+
+\newcommand{\spa}{\text{ }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Eu}{\mathbb{E}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\SL}{SL}
+\newcommand{\GL}{GL}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\un}{\mathfrak{u}(n)}
+\renewcommand{\sp}{\mathfrak{sp}}
+
+\newcommand{\Id}{\text{Id}}
+\newcommand{\Span}[1]{\text{Span}(#1)}
+\newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
+\newcommand{\del}{\partial}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\ad}{\text{ad}}
+\newcommand{\grad}{\text{grad}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\exp}[1]{\text{exp}(#1)}
+\newcommand{\Lie}[1]{\text{Lie}(#1)}
+
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\ex}{\mathbb{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Ln}{\text{Ln}}
+\newcommand{\D}{\mathbb{D}}
+
+\DeclareMathOperator{\sign}{sign}
+
+
+
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\Hom}{Hom} 
+
+
+
+% \usepackage{keytheorems}
+% \usepackage[thmtools-compat]{keytheorems}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{cleveref}
+% \usepackage{zref-clever}
+% \usepackage[nameinlink,capitalise]{cleveref}
+% \usepackage{enumitem}
+% \usepackage{tikz-cd}
+
+% \usepackage{lipsum}
+% \usepackage{kantlipsum}
+% \usepackage{changepage}
+
+
+% % \newtheoremstyle{break}
+% %   {\topsep}{\topsep}%
+% %   {\itshape}{}%
+% %   {\bfseries}{}%
+% %   {\newline}{}%
+% % \theoremstyle{break}
+% \theoremstyle{definition}
+% \newtheorem{thm}{Theorem}
+% \newtheorem{cor}{Corollary}[thm]
+% \newtheorem{lem}[thm]{Lemma}
+% \newtheorem{definition}{Definition}
+% \newtheorem{example}{Example}
+
+
+
+
+
+
+\newkeytheoremstyle{indentedStyle}
+  {
+    bodyfont=\rmfamily,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    headindent=0pt %If I want it to be in the normal spot, I have to set it to be the negative of the leftmargin value.
+  }
+  
+
+\newkeytheorem{theorem}[style=indentedStyle, parent=section]
+%"parent=section" means that the numbering will be chapter specific.
+
+\newkeytheorem{corollary}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+\newkeytheorem{lemma}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+\newkeytheorem{proposition}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+\newkeytheorem{example}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+\newkeytheorem{definition}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+\newkeytheorem{remark}[style=indentedStyle, sibling=theorem]
+%"parent=chapter" means that the numbering will be chapter specific.
+
+
+%%%-------------------------------
+
+
+
+
+% \newenvironment{problem}[2][Problem]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+
+% % \declaretheoremstyle[
+% % headfont=\color{red}\normalfont\bfseries, 
+% % bodyfont=\color{red}\normalfont\itshape,
+% % ]{colored}
+
+% % \declaretheorem[
+% %   style=colored,
+% %   name=Note For Myself,
+% % ]{noteForMe}
+
+
+
+ 
+% \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{conjecture}[2][Conjecture]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{question}[2][Question]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{definition}[2][Definition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{example}[2][Example]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{remark}[2][Remark]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% \newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+% % \theoremstyle{definition}
+% % \newtheorem{definition}{Definition}[section]
+
+
+\numberwithin{equation}{section}
+\usepackage[hidelinks]{hyperref}

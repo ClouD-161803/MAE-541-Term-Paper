@@ -1,0 +1,140 @@
+\section{The Circular Restricted Three Body Problem} 
+\label{sec:CR3BP}
+
+Our project studies the dynamics of the Earth--Moon CR3BP, with a particular focus on periodic orbits. 
+The CR3BP describes the motion of a body of negligible mass under the gravitational attraction of two larger bodies.
+The larger bodies are referred to as the primary, with mass $m_1$, and the secondary, with mass $m_2$, where $m_1>m_2$.
+A system of natural units is used to normalize position, time, and velocity variables: the distance unit (DU) is the distance between the primary and secondary, the time unit (TU) is the orbital period of the primary and secondary divided by $2\pi$, and the mass unit (MU) is $m_1+m_2$.
+The only parameter of the system is the \emph{mass ratio} 
+\begin{equation} \label{eq:mass ratio}
+    \mu = \frac{m_2}{m_1+m_2}.
+\end{equation}
+All constants for the Earth--Moon system are shown in Table \ref{tab:em_cr3bp_units}.
+The dynamics are described in a rotating frame of reference $(x,y,z)$, shown in \cref{fig:cr3bp}, with the primary and secondary bodies located on the $x$-axis at $x$ values of $-\mu$ and $1-\mu$, respectively.
+
+\begin{figure}[ht]
+    \centering
+
+    \begin{minipage}[c]{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{images/CR3BP.png}
+        \caption{CR3BP rotating frame featuring primaries $m_1$, $m_2$, and the five libration points.}
+        \label{fig:cr3bp}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.45\linewidth}
+        \centering
+        \captionof{table}{Normalization constants for the Earth--Moon CR3BP.}
+        \label{tab:em_cr3bp_units}
+        \begin{tabular}{c c}
+            \hline
+            Quantity & Value \\
+            \hline
+            $\mu$ & $1.215 \times 10^{-2}$ \\
+            DU & $3.844 \times 10^5~\mathrm{km}$ \\
+            TU & $2.361\times10^6~\mathrm{s}$ \\
+            MU & $6.0458 \times 10^{24}~\mathrm{kg}$ \\
+            \hline
+        \end{tabular}
+    \end{minipage}
+
+\end{figure}
+    
+Let the position and velocity vectors be denoted by
+\begin{equation*}
+    \boldsymbol{r} =
+    \begin{pmatrix}
+    x \\ y \\ z
+    \end{pmatrix},
+    \qquad
+    \boldsymbol{v} =
+    \begin{pmatrix}
+    v_x \\ v_y \\ v_z
+    \end{pmatrix},
+\end{equation*}
+the CR3BP equations of motion can be written as the second-order system
+
+\begin{equation} \label{eq:cr3bp_acceleration}
+    \ddot{\boldsymbol{r}}
+    =
+    \boldsymbol{g}(\boldsymbol{r},\boldsymbol{v})
+    =
+    \begin{pmatrix}
+        2v_y + x - (1-\mu)\dfrac{x+\mu}{\rho_1^3} - \mu\dfrac{x-1+\mu}{\rho_2^3} \\
+        -2v_x + y - (1-\mu)\dfrac{y}{\rho_1^3} - \mu\dfrac{y}{\rho_2^3} \\
+        -(1-\mu)\dfrac{z}{\rho_1^3} - \mu\dfrac{z}{\rho_2^3}
+    \end{pmatrix},
+\end{equation}
+where
+
+\begin{equation*}
+    \rho_1 = \sqrt{(x+\mu)^2+y^2+z^2},
+    \qquad
+    \rho_2 = \sqrt{(x-1+\mu)^2+y^2+z^2}
+\end{equation*}
+are the distances to the primary and secondary, respectively.
+
+The dynamics can be rewritten as a first-order autonomous system. We define the full state vector as
+\begin{equation} \label{eq:stateVector}
+    \boldsymbol{x}
+    =
+    \begin{pmatrix}
+    \boldsymbol{r} \\
+    \boldsymbol{v}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    x \\ y \\ z \\ v_x \\ v_y \\ v_z
+    \end{pmatrix}.
+\end{equation}
+In the sections that consider the planar CR3BP, we use the same notation but omit $z$ and $v_z$ from the state vector.
+This reduction is consistent because the plane $z=v_z=0$ is invariant under the CR3BP dynamics; that is, an initial condition satisfying $z(0)=v_z(0)=0$ remains planar for all time.
+The CR3BP dynamics can be written compactly as
+\begin{equation}
+    \dot{\boldsymbol{x}}
+    =
+    \boldsymbol{f}(\boldsymbol{x})
+    =
+    \begin{pmatrix}
+        \boldsymbol{v} \\
+        \boldsymbol{g}(\boldsymbol{r},\boldsymbol{v})
+    \end{pmatrix}.
+    \label{eq:cr3bp_first_order}
+\end{equation}
+For an initial condition $\boldsymbol{x}_0$, we denote the solution of
+\begin{equation*}
+    \dot{\boldsymbol{x}} = \boldsymbol{f}(\boldsymbol{x}),
+    \qquad
+    \boldsymbol{x}(0)=\boldsymbol{x}_0,
+\end{equation*}
+by
+\begin{equation*}
+    \boldsymbol{x}(t) = \boldsymbol{\phi}(t,\boldsymbol{x}_0),
+\end{equation*}
+where $\boldsymbol{\phi}$ is the flow map of the CR3BP, mapping an initial state to the state reached after time $t$.
+
+
+As established, for example, in \cite{KoonLoMarsdenRoss2022} the equations of motion of the CR$3$BP are Hamiltonian and independent of time. Further discussion of its energy integral of motion is given in \cref{subsec: constant energy regions}, and plays an important part in the regions considered therein.
+
+
+
+
+% As established in \textcolor{red}{\textbf{ADD REFERNECE TO ROSS 3 BODY PROBLEM}}, the equations of motion of the CR$3$BP are Hamiltonian and independent of time, with an energy integral of motion given by
+% \begin{equation} \label{eq:energyWithZ}
+%     E(x,y, z, v_x,v_y,v_z) = \frac{1}{2} \bigl( v_x^2 + v_y^2 + v_z^2 \bigr) + \tilde U(x,y,z),
+% \end{equation}
+% where $\tilde U(x,y,z)$ is the augmented potential of the CR3BP,
+% \begin{equation}
+%     \tilde U(x,y,z) = -\frac{1}{2}(x^2 + y^2+z^2) - \frac{\mu_1}{\sqrt{(x+\mu_2)^2 + y^2+z^2}} - \frac{\mu_2}{\sqrt{(x-\mu_1)^2 + y^2}} -\frac{1}{2} \mu_1 \mu_2.
+% \end{equation}
+
+
+% For a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is given by the equation
+% \begin{equation} \label{eq:energy}
+%     E = \frac{1}{2} \bigl( v_x^2 + v_y^2 \bigr) + \tilde U(x,y),
+% \end{equation}
+% where $\tilde U(x,y)$ is the augmented potential of the CR3BP,
+% \begin{equation}
+%     \tilde U(x,y) = -\frac{1}{2}(x^2 + y^2) - \frac{\mu_1}{\sqrt{(x+\mu_2)^2 + y^2}} - \frac{\mu_2}{\sqrt{(x-\mu_1)^2 + y^2}} -\frac{1}{2} \mu_1 \mu_2.
+% \end{equation}
+

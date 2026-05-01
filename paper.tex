@@ -1,43 +1,133 @@
-\documentclass[conference]{IEEEtran}
+% \documentclass[conference]{report}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PREAMBLE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
 
-\input{sections/packages}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% END PREAMBLE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{preamble}
+\usepackage{subcaption}
+% \input{sections/packages}
+
+
+
+
 
 \begin{document}
 
-\title{\textcolor{red}{TITLE}}
+\title{\huge MAE 541 Final Project Paper}
 
-\author{\IEEEauthorblockN{Jannik Gräbner, Jack Sydney Schwartz, Claudio Vestini}
-\IEEEauthorblockA{\textit{Mechanical \& Aerospace Engineering} \\
-\textit{Princeton University}\\
-Princeton, NJ, United States \\
-\textcolor{red}{JG EMAIL}, \textcolor{red}{JSS EMAIL}, claudio.vestini@keble.ox.ac.uk}
-}
+
+
+\author{Jannik Gräbner\footnote{PhD candidate, jg3607@princeton.edu}, Jack Sydney Schwartz \footnote{PhD student, js1765@princeton.edu}, Claudio Vestini \footnote{Visiting undergraduate student, claudio.vestini@keble.ox.ac.uk} \\
+\textit{\normalsize Mechanical \& Aerospace Engineering} \\
+\textit{\normalsize Princeton University} \\
+% \normalsize Princeton, NJ, United States of America}
+\normalsize Princeton, NJ}
+
+
+\date{8 May 2026}
+
 
 \maketitle
 
-\begin{abstract}
-\textcolor{red}{ABSTRACT}
-\end{abstract}
+
+%\begin{abstract}
+%    As interest in the Earth-Moon domain grows, the risk of orbital debris generation grows correspondingly. 
+%    Unlike debris in near-Earth dynamics, natural removal is extremely limited. 
+%    Moreover, the dynamics are dominated by multi-body effects that make traditional propagation methods inadequate. 
+%    In this work, we introduce a novel framework with the potential to improve the analysis of long-term propagation of debris in this domain.
+%    At this preliminary stage, we assume the dynamics to be well approximated by the circular restricted three-body problem. 
+%    By partitioning the phase space into neighbourhoods of periodic orbit crossings, the local application of applied dynamical systems tools (such as normal form theory), is used to more efficiently propagate orbits in various energy domains. \textcolor{red}{\textbf{COULD POSSIBLY ALTER OR REMOVE ABSTRACT ALL TOGETHER}}
+%\end{abstract}
+
+
+
+
+\tableofcontents
+
+
+
+
 
 \input{sections/introduction}
-\input{sections/numerical-experiments}
+% System: CR3BP
+% 1. Introduction: Historical background on three-body systems, role of the CR3BP in preliminary mission design for astrodynamics applications
+
+% 2. Dynamics: show the dynamics of CR3BP, describe the natural units and mass parameter
+
+% 3. Eq.points: full derivation of Lagrange points 
+
+% 4. Periodic Orbits: explain in general, explain resonant orbits, show pictures, how to solve for them numerically using differential correction
+
+% 5. Analysis of periodic orbits on the Poincaré section: show plots on Poincaré map, explain how to get them numerically, maybe talk about density of those points
+
+% 6. 
 
 
-\printbibliography
 
-\clearpage
-\appendix
-\section{Appendix}
-\label{app:proofs}
+\input{sections/cr3bp}
 
-\textcolor{red}{APPENDIX}
+\newpage %temporarily
+
+\input{sections/EquilibriumPoints}
+
+\newpage %temporarily
+
+\input{sections/computingPeriodicOrbits}
+
+\newpage %temporarily
+
+\input{sections/visualising}
+
+\newpage %temporarily
+
+\input{sections/OrbitalCrossings}
+
+\newpage %temporarily
+
+% \input{sections/PoincareMap}
+
+% \newpage %temporarily
+
+\input{sections/Bifurcations}
+
+\newpage %temporarily
+
+\input{sections/NormalForms}
+
+%\newpage %temporarily
+
+
+
+
+
+
+
+
+
+
+% \clearpage
+% \appendix
+% \section{Appendix}    %%%Appendix probably not necessary, any proofs can probably jsut be in place, since it's a project/report.
+% \label{app:appendix}
+
+% \textcolor{red}{APPENDIX}
+
+
+
+
+
+%\newpage
+
+\addcontentsline{toc}{section}{Bibliography}
+
+\bibliographystyle{alpha}  %use the plain bibliography style
+% \nocite{*}
+% \nocite{test1972}
+\bibliography{references} % Entries are in the refs.bib file
+
+
+
+
 
 \end{document}

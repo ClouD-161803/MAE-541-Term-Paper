@@ -1,29 +1,45 @@
 \section{Introduction} \label{sec:introduction}
 
-\textcolor{red}{INTRODUCTION}
+    % \textcolor{red}{INTRODUCTION}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/ONECOL_FIGURE.jpg}
-    \caption{\textcolor{red}{ONECOL FIGURE CAPTION}.}
-    \label{fig:SAMPLE_ONECOL_FIGURE}
-\end{figure}
+    % Growing international and commercial interest in the cislunar (Earth-Moon) domain, are driven by the goal of establishing a sustained human and robotic presence on and near the Moon. 
+    % This has led to a rapidly increasing number of planned missions in this region, with some projections that nearly 50 missions to the cislunar environment will be launched by 2030, including efforts aimed at supporting human exploration infrastructure, resource utilisation, and commercial activities.
+    % As the population of spacecraft in the Earth–Moon system grows, the risk of fragmentation events and the generation of orbital debris correspondingly increases. 
+    % Assessing and mitigating these risks requires the ability to forecast the long-term evolution of debris objects within the cislunar environment. 
+    % However, current studies highlight the absence of established methodologies and best practices for propagating debris in the cislunar domain on long timescales.
 
-\begin{figure*}
-    \centering
-    \begin{subfigure}[t]{0.49\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Figures/TWOCOL_FIGURE1.pdf}
-        \caption{\textcolor{red}{TWOCOL FIGURE 1 SUBCAPTION}.}
-        \label{fig:SAMPLE_TWOCOL_FIGURE1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.49\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{Figures/TWOCOL_FIGURE2.pdf}
-        \caption{\textcolor{red}{TWOCOL FIGURE 2 SUBCAPTION}.}
-        \label{fig:SAMPLE_TWOCOL_FIGURE2}
-    \end{subfigure}
-    \caption{\textcolor{red}{TWOCOL FIGURE CAPTION}.}
-    \label{fig:SAMPLE_TWOCOL_FIGURE}
-\end{figure*}
+    % Due to several fundamental differences, the problem of dealing with these risks comes with distinct challenges not felt in the near-Earth environment. Such challenges include the need to consider multi-body dynamics instead of comparatively simple two-body dynamics, and the inherently chaotic nature of the system. Additionally, negligible/no atmospheric drag means that many cislunar orbits do not decay as they do in Earth orbit, hence there is very little natural removal of objects in orbit in the cislunar domain.
+
+        
+    Growing international and commercial interest in the cislunar (Earth-Moon) domain is driven by the goal of establishing a sustained human and robotic presence on and near the Moon. 
+    As a result, the number of planned missions in this region is increasing rapidly, with some projections estimating that nearly 50 missions to the cislunar environment will be launched by 2030, including efforts to support human exploration infrastructure, resource utilization, and commercial activities \cite{johnson_fly_2022}.
+    
+    The cislunar environment is governed by complex dynamics, as objects move under the gravitational influence of both the Earth and the Moon. 
+    In addition, they are affected by further perturbations, such as the gravitational pull of other bodies, including the Sun and Jupiter, as well as solar radiation pressure. 
+    The growing number of missions in this region requires a thorough understanding of its dynamical structure, which can be developed through mathematical analysis of the underlying system.
+    
+    A common astrodynamics model used in preliminary mission design is the Circular Restricted Three-Body Problem (CR3BP).
+    The CR3BP is a Hamiltonian system that describes the motion of a massless body under the gravitational influence of two primary bodies in a rotating frame of reference. 
+    Although it is a simplified model, it still captures many of the essential dynamical features of three-body systems.
+    
+    Periodic orbits are one particularly important dynamical feature for space missions, which can be studied in the CR3BP. 
+    In the Earth-Moon system, such orbits often serve as mission targets, and properties such as their stability and spatial location play an important role in mission design. 
+    Low-thrust trajectory design frequently exploits the stable and unstable invariant manifolds of these orbits to approach or depart from them in a fuel-efficient manner. 
+    The study of periodic orbits also supports the development of efficient long-term propagation methods for cislunar objects, for example through normal form theory.
+
+We study the CR3BP using several tools from dynamical systems theory.
+In particular, our project consists of the following components, with the main responsibility for each part indicated in brackets:
+\begin{itemize}
+    \item \textbf{Equilibrium Points}: The CR3BP has five equilibrium points, commonly referred to as Lagrange or libration points. We will derive their locations, local linearisations of the vector field , and study their stability as a function of the mass ratio. (\textit{Claudio})
+    %\cref{Equation: CR3BP dynamical system}
+    
+    \item \textbf{Computing Periodic Orbits}: The CR3BP admits infinitely many periodic orbits \cite{Poincare_1957}. We will focus on planar periodic orbits, in particular resonant orbits and orbits around the libration points. Computing such orbits is not always straightforward because of their abundance and stability properties. We will generate a dataset of periodic orbits using differential correction together with informed initial guesses based on known orbit characteristics. (\textit{Jannik})
+    
+    \item \textbf{Poincaré Map at $y=0$}: This part of the project focuses on the planar CR3BP (PCR3BP), which has a four-dimensional phase space. Introducing a Poincaré map at $y=0$ turns periodic orbits of the continuous system into fixed points of the map. This provides a useful tool for visualizing the families of periodic orbits computed in the previous section in a three-dimensional space and for studying how densely they populate different regions of phase space. (\textit{Jack})
+    
+    \item \textbf{Poincaré Map at $y=0$ for Fixed Energy}: This component also focuses on the PCR3BP and aims to illustrate how the system dynamics depend on the energy level. We will study puncture points on a two-dimensional Poincaré map defined by fixing $y=0$ at a given energy level. By propagating a large number of initial conditions over long time spans, we aim to visualize how chaotic behaviour becomes more pronounced as the energy increases. (\textit{Jack})
+    
+    \item \textbf{Bifurcations of Periodic Orbits}: Families of periodic orbits undergo bifurcations as the mass parameter or orbit energy varies. In this part of the project, we will identify and visualize selected bifurcations within these families. (\textit{Claudio})
+    
+    \item \textbf{Normal Forms around Periodic Orbits}: By introducing a sequence of near-identity transformations to normal form coordinates, the dynamics near a periodic orbit can be simplified. This enables more efficient propagation in normal form coordinates, with potential applications to long-term uncertainty propagation. We will apply this approach to an example Lyapunov orbit around one of the libration points. (\textit{Jannik})
+\end{itemize}
