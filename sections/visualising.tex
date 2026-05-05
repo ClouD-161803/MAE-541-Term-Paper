@@ -92,16 +92,21 @@
 
     \subsection{Constant Energy Regions} \label{subsec: constant energy regions}
 
-    As alluded to at the end of \cref{subsubsec: synodic frame}, it follows from \cite{KoonLoMarsdenRoss2022} that for a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is prescribed by the equation
-    %%
-    % For a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is given by the equation
+    As established in \cref{sec:EquilibriumPoints}, the equations of motion of the CR$3$BP are Hamiltonian and autonomous. The Hamiltonian (or total energy of the smallest body in the CR$3$BP) is defined in \eqref{eq:hamiltonian_definition} for the full six-dimensional state. In this section, however, we consider a reduced-order coordinate vector. For a general point of the form $(x,y,v_x,v_y) \in \R^4$ , the total energy $E = H$ of the system reduces to
     \begin{equation} \label{eq:energy}
     	E = \frac{1}{2} \bigl( v_x^2 + v_y^2 \bigr) + \tilde U(x,y),
     \end{equation}
-    where $\tilde U(x,y)$ is the augmented potential of the CR3BP,
-    \begin{equation}
-        \tilde U(x,y) = -\frac{1}{2}(x^2 + y^2) - \frac{\mu_1}{\sqrt{(x+\mu_2)^2 + y^2}} - \frac{\mu_2}{\sqrt{(x-\mu_1)^2 + y^2}} -\frac{1}{2} \mu_1 \mu_2.
-    \end{equation}
+    where $\tilde U(x,y)$ is the effective potential of the reduced-order CR$3$BP, defined in \cref{sec:EquilibriumPoints}, and simplified by taking $z= v_z$ (the first step in our above reduction).
+    % As alluded to at the end of \cref{subsubsec: synodic frame}, it follows from \cite{KoonLoMarsdenRoss2022} that for a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is prescribed by the equation
+    % %%
+    % % For a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is given by the equation
+    % \begin{equation} \label{eq:energy}
+    % 	E = \frac{1}{2} \bigl( v_x^2 + v_y^2 \bigr) + \tilde U(x,y),
+    % \end{equation}
+    % where $\tilde U(x,y)$ is the augmented potential of the CR3BP,
+    % \begin{equation}
+    %     \tilde U(x,y) = -\frac{1}{2}(x^2 + y^2) - \frac{\mu_1}{\sqrt{(x+\mu_2)^2 + y^2}} - \frac{\mu_2}{\sqrt{(x-\mu_1)^2 + y^2}} -\frac{1}{2} \mu_1 \mu_2.
+    % \end{equation}
 
 
     
@@ -124,7 +129,7 @@
         % E_2 = \textcolor{red}{\textbf{WHAT IS THE VALUE (AND UNITS) FOR THE ENERGY AT L2????}},
         E_2 \approx -1.592,
     \end{equation}
-    the energy value (in dimensionless CR3BP units) corresponding to the Lagrange point $L_2$. We refer to the region enclosed by this surface as the \textit{accessible region}, as it comprises all states of the form $(x,0,v_x,v_y)$ that have an energy level at or below $E_2$. 
+    the energy value (in dimensionless CR3BP units) corresponding to the Lagrange point $\mathcal{L}_2$. We refer to the region enclosed by this surface as the \textit{accessible region}, as it comprises all states of the form $(x,0,v_x,v_y)$ that have an energy level at or below $E_2$. 
     % As orbiting bodies with energies above that level may leave the Earth-Moon system, this informs the cut-off of the 
     As orbiting bodies with energies above this level may leave the Earth-Moon system, this defines the boundary of the scope of our current work.
 
