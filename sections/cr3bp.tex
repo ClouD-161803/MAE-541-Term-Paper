@@ -1,59 +1,232 @@
 \section{The Circular Restricted Three Body Problem} 
 \label{sec:CR3BP}
 
-Our project studies the dynamics of the Earth--Moon CR3BP, with a particular focus on periodic orbits. 
-The CR3BP describes the motion of a body of negligible mass under the gravitational attraction of two larger bodies.
-The larger bodies are referred to as the primary, with mass $m_1$, and the secondary, with mass $m_2$, where $m_1>m_2$.
-A system of natural units is used to normalize position, time, and velocity variables: the distance unit (DU) is the distance between the primary and secondary, the time unit (TU) is the orbital period of the primary and secondary divided by $2\pi$, and the mass unit (MU) is $m_1+m_2$.
-The only parameter of the system is the \emph{mass ratio} 
-\begin{equation} \label{eq:mass ratio}
-    \mu = \frac{m_2}{m_1+m_2}.
-\end{equation}
-All constants for the Earth--Moon system are shown in Table \ref{tab:em_cr3bp_units}.
-The dynamics are described in a rotating frame of reference $(x,y,z)$, shown in \cref{fig:cr3bp}, with the primary and secondary bodies located on the $x$-axis at $x$ values of $-\mu$ and $1-\mu$, respectively.
+Our project studies the dynamics of the Earth--Moon CR3BP. A simplification of the more general Three-Body Problem (3BP), this continuous-time, non-integrable dynamical system is one of the most celebrated and extensively studied in the history of both mathematics and physics. It is, in fact, through the analysis of this very system that French mathematician Henri Poincaré gave birth to the fields of dynamical systems and chaos theory, the fundamental tenets of our MAE 541 course.
 
-\begin{figure}[ht]
-    \centering
+\subsection{A Brief Historical Summary} \label{subsec:history}
 
-    \begin{minipage}[c]{0.45\linewidth}
-        \centering
-        \includegraphics[width=0.9\linewidth]{images/CR3BP.png}
-        \caption{CR3BP rotating frame featuring primaries $m_1$, $m_2$, and the five libration points.}
-        \label{fig:cr3bp}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[c]{0.45\linewidth}
-        \centering
-        \captionof{table}{Normalization constants for the Earth--Moon CR3BP.}
-        \label{tab:em_cr3bp_units}
-        \begin{tabular}{c c}
-            \hline
-            Quantity & Value \\
-            \hline
-            $\mu$ & $1.215 \times 10^{-2}$ \\
-            DU & $3.844 \times 10^5~\mathrm{km}$ \\
-            TU & $2.361\times10^6~\mathrm{s}$ \\
-            MU & $6.0458 \times 10^{24}~\mathrm{kg}$ \\
-            \hline
-        \end{tabular}
-    \end{minipage}
+Although problems in astrodynamics have forever inspired humankind and his discoveries, the first recognizable mathematical formalization of the general 3BP appeared in the XVII century \emph{Principia Mathematica} by Isaac Newton \cite{newton1687principia}. After successfully inventing the mathematical framework to generalise previous findings on the Two-Body problem (i.e. the Keplerian orbits and Kepler's laws), Newton elegantly derived the dynamics of the Earth--Moon--Sun system, and attempted to find admitted closed-form solutions, without success. In conversations with his contemporary Dr Edmond Halley, who was pressing Newton to finish his work on 3BP theory, he admitted that studying this system ``made [his] head ache, and kept [him] awake so often, that [he] would think of it no more" \cite{brewster1855memoirs}.
 
-\end{figure}
-    
-Let the position and velocity vectors be denoted by
+Newton's work was picked up in the 1760's by Leonhard Euler, who took the first major steps toward the simplification of the general problem to the familiar CR3BP form. He did so by introducing a \emph{synodic}, or rotating, coordinate system that moved along with the two \emph{primary} bodies. Euler was also the first to search for specific configurations where a third, \emph{secondary} body could remain fixed relative to the two primaries, discovering the first three collinear equilibrium points \cite{euler1767motu}.
+
+A comprehensive mathematical formalization of the restricted assumption came from Joseph-Louis Lagrange in his 1772 \emph{Essai sur le problème des trois corps} \cite{lagrange1772essai}. Lagrange posited a system where two primary bodies of finite mass move in circular orbits around their common centre of mass, while a third body of negligible mass is attracted to the two primaries without any measurable effect on the gravitational environment. On top of Euler's collinear points, Lagrange discovered two additional triangular equilibrium points. As a result, today all five equilibrium (or \emph{libration}) points of the CR3BP are universally referred to as the Lagrange (or $\mathcal{L}$) points. For decades to follow, mathematicians searched for integrals of motion that would allow the differential equations to be solved. In 1836, Carl Gustav Jacob Jacobi formulated the existence of the first integral of motion of the problem, the Jacobi Constant, which remains the only known conserved quantity in the CR3BP \cite{jacobi1836mouvement}. Using this constant, Jacobi also introduced zero-velocity surfaces defining topological boundaries for where the third body is allowed to travel.
+
+The late XIX century marked a profound shift in how the CR3BP was understood. Motivated by an 1887 prize offered by King Oscar II of Sweden for a general mathematical solution to the n-body problem, Henri Poincaré submitted a manuscript focusing heavily on the restricted problem. In this monumental work, Poincaré proved mathematically that the system is non-integrable, thus establishing that a closed-form algebraic solution is impossible \cite{poincare1890sur}. Instead, Poincaré shifted the focus of the analysis towards topological and qualitative dynamics. In so doing, he first discovered \emph{homoclinic tangles}, giving rise to the modern field of chaos theory. In addition, Poincaré was also the first to theorize the existence of an infinite family of periodic orbits admitted by the CR3BP \cite{Poincare_1893}. These were later traced out with the advent of digital computation and numerical methods.
+
+Indeed, most recent contributions have been enabled by the application of modern computational solvers to Poincaré's theory.  At the dawn of the XXI century, researchers were able to identify and map the stable and unstable \emph{invariant manifolds} that branch from periodic orbits \cite{koon2000invariant}, demonstrating their utility for optimal mission design through the \emph{interplanetary transport network}. The 3BP is increasingly receiving attention even outside of the academic sphere: in 2024 the TV-Series \emph{3 Body Problem}, an English language adaptation of a book by Chinese author Liu Cixin, was released and quickly became popular on the streaming site Netflix. To this day, the CR3BP remains an active frontier of scientific research. This simplified system is often used as a preliminary framework for orbital mission design, serving as a bridge between analytical theory and the modern demands of space exploration.
+
+\subsection{Analytical Derivation of System Dynamics} \label{subsec:dynamics_derivation}
+\subsubsection{Inertial Frame}
+We begin by considering the general 3BP, which studies the dynamics of an isolated system containing three point-mass bodies with position vectors $\bar{\boldsymbol{r}}_{(i)} \coloneq (\bar{x}_{(i)}, \bar{y}_{(i)}, \bar{z}_{(i)})$ and masses $\bar{m}_i$, where $i \in \{1,2,3\}$. Combining Newton's Law of Universal Gravitation with his Third Law, the three masses mutually attract each other according to the equation of motion
 \begin{equation*}
-    \boldsymbol{r} =
-    \begin{pmatrix}
-    x \\ y \\ z
-    \end{pmatrix},
-    \qquad
-    \boldsymbol{v} =
-    \begin{pmatrix}
-    v_x \\ v_y \\ v_z
-    \end{pmatrix},
+    \bar{m}_i \frac{d^2 \bar{\boldsymbol{r}}_{(i)}}{d\bar{t}^2}
+    = G \sum_{j\neq i}\frac{\bar{m}_i \bar{m}_j}{\bar{r}_{(ij)}^3}\,\bar{\boldsymbol{r}}_{(ij)}.
 \end{equation*}
-the CR3BP equations of motion can be written as the second-order system
+where $G$ is the Gravitational Constant, $\bar{\boldsymbol{r}}_{(ij)} \coloneq \bar{\boldsymbol{r}}_{(j)} - \bar{\boldsymbol{r}}_{(i)}$ is the relative position of each point-mass $\bar{m}_j$ with respect to $\bar{m}_i$, and $\bar{r}_{(ij)} \coloneq \|\bar{\boldsymbol{r}}_{(ij)}\|_2^2$ is the magnitude of the relative position vector, with $\|\cdot\|_2^2$ being the Euclidean norm in $\mathbb{R}^3$. To simplify the dynamics, in the CR3BP we impose the following assumptions and notation.
 
+A system of natural units is used to normalize position, time, and velocity variables: the distance unit (DU) is the distance between the primary and secondary, the time unit (TU) is the orbital period of the primary and secondary divided by $2\pi$, and the mass unit (MU) is $\bar{m}_1+\bar{m}_2$. Substituting the normalized variables $m_i \coloneq \bar{m}_i / \mathrm{MU}$, $t \coloneq \bar{t}/\mathrm{TU}$, and $\boldsymbol{r}_{(i)} \coloneq \bar{\boldsymbol{r}}_{(i)}/\mathrm{DU}$ and rearranging, we obtain
+\begin{equation*}
+    m_i \frac{d^2\boldsymbol{r}_{(i)}}{dt^2} = \left( \frac{G \cdot \mathrm{MU} \cdot \mathrm{TU}^2}{\mathrm{DU}^3} \right) \sum_{j\neq i}\frac{m_i m_j}{r_{(ij)}^3}\boldsymbol{r}_{(ij)}.
+\end{equation*}
+The constant term is the product of terms $G \cdot \mathrm{MU}/\mathrm{DU}^3$ and $\mathrm{TU}^2$. By Kepler's Third Law and definition of the time unit, we have
+\begin{equation*}
+    \mathrm{TU} = \sqrt{\frac{\mathrm{DU}^3}{G \cdot \mathrm{MU}}}.
+\end{equation*}
+The constant term thus evaluates to unity, yielding the normalized equations of motion.
+
+To simplify the system even further, we assume that the third body has negligible mass, $m_3 << m_1,m_2$. Consequently, this body does not exert any force on the other two and does not affect their motion. We refer to the larger bodies as the \emph{primary}, $m_1$, and the \emph{secondary}, $m_2$, where $m_1>m_2$. For brevity, we rename the smallest body's normalized mass and normalized position vector $m = m_3$ and $\boldsymbol{r} = \boldsymbol{r}_{(3)}$. In the inertial frame, the simplified, normalized equation of motion for the smallest body is thus given by
+\begin{equation} \label{eq:inertial_kinematiks}
+    \frac{d^2\boldsymbol{r}}{dt^2} =\frac{d^2\boldsymbol{r}_{(3)}}{dt^2}
+    = \frac{m_1}{r_{(13)}^3}\boldsymbol{r}_{(13)}
+    + \frac{m_2}{r_{(12)}^3}\boldsymbol{r}_{(12)}.
+\end{equation}
+
+We can reduce the number of the system's parameters to just one by defining the \emph{mass ratio} 
+\begin{equation} \label{eq:mass ratio}
+    \mu \coloneq \frac{m_2}{m_1+m_2}.
+\end{equation}
+In the normalized system, the mass of the primary $m_1$ is thus $1-\mu$, and that of the secondary $m_2$ is $\mu$.
+
+Our project is primarily focused on the Earth--Moon system; however, using the same normalization framework, the system can model any primary-secondary pair (such as the Sun--Earth system) by simply altering the normalization constants. All reference constants for the Earth--Moon and Sun--Earth system are shown in \cref{tab:cr3bp_parameters}. 
+
+\begin{table}[htpb]
+    \centering
+    \caption{Normalization constants for the Earth--Moon and Sun--Earth systems in the CR3BP.}
+    \label{tab:cr3bp_parameters}
+    \begin{tabular}{l c c}
+        \hline
+        Quantity & Earth--Moon Value & Sun--Earth Value \\
+        \hline
+        Mass Parameter ($\mu$) & $1.2150582 \times 10^{-2}$             & $3.003 \times 10^{-6}$ \\
+        Distance Unit (DU)     & $384,400~\mathrm{km}$    & $1.4960 \times 10^8~\mathrm{km}$\\
+        Time Unit (TU)         & $4.348~\mathrm{days}$     & $58.131~\mathrm{days}$ \\
+        Mass Unit (MU)         & $6.0458 \times 10^{24}~\mathrm{kg}$ & $1.989 \times 10^{30}~\mathrm{kg}$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Synodic Frame} \label{subsubsec: synodic frame}
+To complete the set of assumptions behind the CR3BP, we shift the reference frame from the inertial (fixed) frame, described so far, to a \emph{synodic} (rotating) reference frame. This frame considers the position $P$ of the smallest body $m$.
+
+We denote as $(x,y,z)$ the coordinates of $P$ expressed in the synodic reference frame. We place the origin of our frame at the barycentre of primary and secondary, with the $x$--axis aligned with the line joining these two bodies, oriented in the direction of the secondary $m_2$. The frame is then made to rotate, along with the primary and secondary, around the $z$--axis with constant angular velocity $\omega$ equal to the mean motion of the primaries. Given our normalization, the angular velocity is unitary, and the angular velocity vector is thus given by $\boldsymbol{\omega} = (0,0,1)$. The $y$--axis is set so to complete a right-handed coordinate system.
+
+In this configuration, the primary $m_1$ and secondary $m_2$ are fixed on the $x$--axis at positions $(-\mu, 0, 0)$ and $(1-\mu,0,0)$, respectively. The synodic reference frame is illustrated in \cref{fig:synodic_reference_frame}.
+
+\begin{figure}[htpb]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis equal image,
+            hide axis,
+            width=10cm,
+            height=12cm,
+            clip=false,
+            axis lines=middle,
+            ticks=none,
+            xmin=-0.6, xmax=0.85,
+            ymin=-0.55, ymax=0.65
+        ]
+    
+        % Masses m1 and m2
+        \addplot[mark=*, mark size=6pt, only marks, color=brown!90!red] coordinates {(-0.13, 0)};
+        \node at (axis cs:-0.13, 0.06) {$m_1$};
+        \node at (axis cs:-0.4, -0.1) {$(-\mu, 0, 0)$};
+        \draw[] (axis cs:-0.3, -0.05) -- (axis cs:-0.17, -0.02);
+    
+        \addplot[mark=*, mark size=4pt, only marks, color=brown!90!red] coordinates {(0.41, 0)};
+        \node at (axis cs:0.41, 0.05) {$m_2$};
+        \node at (axis cs:0.41, -0.075) {$(1-\mu, 0, 0)$};
+    
+        % Point P
+        \addplot[mark=*, mark size=1.5pt, only marks, color=black] coordinates {(0.25, 0.275)};
+        \node at (axis cs:0.25, 0.315) {$P$};
+        \node at (axis cs:0.25, 0.235) {$(x, y, z)$};
+    
+        % Axes
+        \draw[->, >=stealth, thick] (-0.55, 0) -- (0.8, 0) node[below] {$x$};
+        \draw[->, >=stealth, thick] (0, -0.5) -- (0, 0.6) node[left] {$y$};
+        \draw[->, >=stealth, thick] (0.15, 0.15) -- (-0.25, -0.25) node[below right] {$z$};
+    
+        \path (axis cs:-0.125,-0.1) rectangle (axis cs:0.6,0.5);
+    
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Illustration of the synodic reference frame.}
+    \label{fig:synodic_reference_frame}
+\end{figure}
+
+In the synodic frame, the equation of motion of $P$ is augmented following the kinematic transport theorem\footnote{Recall that for a rotating reference system, where $I$ denotes the inertial frame and $R$ denotes the synodic frame, the following expressions hold:
+\begin{align*}
+\left(\frac{d}{dt}\right)_I &= \left(\frac{d}{dt}\right)_R + \boldsymbol{\omega}\times, \\
+\left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_I
+&= \left[\left(\frac{d}{dt}\right)_R + \boldsymbol{\omega}\times\right]
+   \left[\left(\frac{d\boldsymbol{r}}{dt}\right)_R + \boldsymbol{\omega}\times\boldsymbol{r}\right] \\
+&= \left(\frac{d}{dt}\right)_R\left[\left(\frac{d\boldsymbol{r}}{dt}\right)_R + \boldsymbol{\omega}\times\boldsymbol{r}\right]
+   + \boldsymbol{\omega}\times\left[\left(\frac{d\boldsymbol{r}}{dt}\right)_R + \boldsymbol{\omega}\times\boldsymbol{r}\right] \\
+&= \left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_R
+   + \left(\frac{d\boldsymbol{\omega}}{dt}\right)_R\times\boldsymbol{r}
+   + \boldsymbol{\omega}\times\left(\frac{d\boldsymbol{r}}{dt}\right)_R
+   + \boldsymbol{\omega}\times\left(\frac{d\boldsymbol{r}}{dt}\right)_R
+   + \boldsymbol{\omega}\times(\boldsymbol{\omega}\times\boldsymbol{r}) \\
+&= \left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_R
+   + \dot{\boldsymbol{\omega}}\times\boldsymbol{r}
+   + 2\boldsymbol{\omega}\times\left(\frac{d\boldsymbol{r}}{dt}\right)_R
+   + \boldsymbol{\omega}\times(\boldsymbol{\omega}\times\boldsymbol{r}).
+\end{align*}}
+\begin{equation} \label{eq:inertial_transport_theorem}
+    \left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_I = 
+    \left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_R 
+    + \underbrace{2\left(\boldsymbol{\omega} \times \left(\frac{d\boldsymbol{r}}{dt}\right)_R\right)}_{\text{Coriolis acceleration}} 
+    + \underbrace{\boldsymbol{\omega} \times \left(\boldsymbol{\omega} \times \boldsymbol{r}\right)}_{\text{centrifugal acceleration}} 
+    + \left(\dot{\boldsymbol{\omega}} \times \boldsymbol{r}\right).
+\end{equation}
+We remark that the second and third terms on the right hand side of \eqref{eq:inertial_transport_theorem} can be identified with the Coriolis and centrifugal accelerations, respectively. Since angular acceleration $\omega$ is constant, the fourth term on the right hand side of \eqref{eq:inertial_transport_theorem} evaluates to zero. We proceed by resolving each of the surviving terms in turn.
+
+Denoting the velocity vector of the smallest body $m$ expressed in the synodic reference frame as $\boldsymbol{v} \coloneq (d \boldsymbol{r}/dt)_R = (v_x, v_y, v_z)$, the Coriolis acceleration term evaluates to
+\[
+2
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+\times
+\begin{pmatrix}
+v_x \\
+v_y \\
+v_z
+\end{pmatrix}
+=
+2
+\begin{pmatrix}
+-v_y \\
+v_x \\
+0
+\end{pmatrix}.
+\]
+Similarly, the centrifugal acceleration term evaluates to
+\[
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+\times
+\left(
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+\times
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+\right)
+=
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
+\times
+\begin{pmatrix}
+-y \\
+x \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-x \\
+-y \\
+0
+\end{pmatrix}.
+\]
+By Newton's Second Law, the left hand side term in \eqref{eq:inertial_transport_theorem} is equal to the sum of external forces per unit mass, and thus equates to the acceleration term given by \eqref{eq:inertial_kinematiks}. We simplify notation by expressing the scalar distances from $P$ to each of the other two bodies as $\rho_1 \coloneq r_{(13)}$ and $\rho_2 \coloneq r_{(23)}$. Expanding the Euclidean norm and simplifying, we obtain
+\[
+    \rho_1 = \sqrt{(x+\mu)^2+y^2+z^2},
+    \qquad
+    \rho_2 = \sqrt{(x-1+\mu)^2+y^2+z^2}.
+\]
+Substituting these into \eqref{eq:inertial_kinematiks} yields
+\[
+    \left(\frac{d^2\boldsymbol{r}}{dt^2}\right)_I = -\frac{1-\mu}{\rho_1^3}
+    \begin{pmatrix}
+    x+\mu \\
+    y \\
+    z
+    \end{pmatrix}
+    -\frac{\mu}{\rho_2^3}
+    \begin{pmatrix}
+    x-1+\mu \\
+    y \\
+    z
+    \end{pmatrix}.
+\]
+Further denoting the acceleration of $m$ expressed in the synodic frame as $(d^2 \boldsymbol{r}/dt^2)_R = \ddot{\boldsymbol{r}} = (\ddot{x}, \ddot{y}, \ddot{z})$, and substituting all terms into \eqref{eq:inertial_transport_theorem}, we arrive at the CR3BP dynamics:
 \begin{equation} \label{eq:cr3bp_acceleration}
     \ddot{\boldsymbol{r}}
     =
@@ -63,16 +236,14 @@ the CR3BP equations of motion can be written as the second-order system
         2v_y + x - (1-\mu)\dfrac{x+\mu}{\rho_1^3} - \mu\dfrac{x-1+\mu}{\rho_2^3} \\
         -2v_x + y - (1-\mu)\dfrac{y}{\rho_1^3} - \mu\dfrac{y}{\rho_2^3} \\
         -(1-\mu)\dfrac{z}{\rho_1^3} - \mu\dfrac{z}{\rho_2^3}
-    \end{pmatrix},
+    \end{pmatrix}.
 \end{equation}
-where
-
-\begin{equation*}
-    \rho_1 = \sqrt{(x+\mu)^2+y^2+z^2},
-    \qquad
-    \rho_2 = \sqrt{(x-1+\mu)^2+y^2+z^2}
-\end{equation*}
-are the distances to the primary and secondary, respectively.
+This is a second-order, continuous dynamical system  $\boldsymbol{g}:\mathbb{R}^3\times\mathbb{R}^3 \rightarrow \mathbb{R}^3$. It is worth noting that the system admits the following symmetries:
+\begin{enumerate}
+    \item with respect to the $x$--$y$ plane, if $(x(t),y(t),z(t))$ is a solution of \eqref{eq:cr3bp_acceleration}, then \newline $(x(t),y(t),-z(t))$ is also a solution;
+    \item with respect to time reversal, if $(x(t),y(t),z(t))$ is a solution of \eqref{eq:cr3bp_acceleration}, then \newline $(x(-t),-y(-t),z(-t))$ is also a solution;
+    \item with respect to the mass parameter, if $(x(t),y(t),z(t))$ is a solution of \eqref{eq:cr3bp_acceleration} for $\mu$, then $(-x(t),-y(t),z(t))$ is a solution for $1-\mu$.
+\end{enumerate}
 
 The dynamics can be rewritten as a first-order autonomous system. We define the full state vector as
 \begin{equation} \label{eq:stateVector}
@@ -96,6 +267,11 @@ The CR3BP dynamics can be written compactly as
     \boldsymbol{f}(\boldsymbol{x})
     =
     \begin{pmatrix}
+        \dot{\boldsymbol{r}} \\
+        \dot{\boldsymbol{v}}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
         \boldsymbol{v} \\
         \boldsymbol{g}(\boldsymbol{r},\boldsymbol{v})
     \end{pmatrix}.
@@ -113,11 +289,7 @@ by
 \end{equation*}
 where $\boldsymbol{\phi}$ is the flow map of the CR3BP, mapping an initial state to the state reached after time $t$.
 
-
-As established, for example, in \cite{KoonLoMarsdenRoss2022} the equations of motion of the CR$3$BP are Hamiltonian and independent of time. Further discussion of its energy integral of motion is given in \cref{subsec: constant energy regions}, and plays an important part in the regions considered therein.
-
-
-
+% As established, for example, in \cite{KoonLoMarsdenRoss2022} the equations of motion of the CR$3$BP are Hamiltonian and independent of time. Further discussion of its energy integral of motion is given in \cref{subsec: constant energy regions}, and plays an important part in the regions considered therein.
 
 % As established in \textcolor{red}{\textbf{ADD REFERNECE TO ROSS 3 BODY PROBLEM}}, the equations of motion of the CR$3$BP are Hamiltonian and independent of time, with an energy integral of motion given by
 % \begin{equation} \label{eq:energyWithZ}
@@ -137,4 +309,3 @@ As established, for example, in \cite{KoonLoMarsdenRoss2022} the equations of mo
 % \begin{equation}
 %     \tilde U(x,y) = -\frac{1}{2}(x^2 + y^2) - \frac{\mu_1}{\sqrt{(x+\mu_2)^2 + y^2}} - \frac{\mu_2}{\sqrt{(x-\mu_1)^2 + y^2}} -\frac{1}{2} \mu_1 \mu_2.
 % \end{equation}
-

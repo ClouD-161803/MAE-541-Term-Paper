@@ -1,7 +1,7 @@
 \section{A Route to Visualisation} \label{sec:visualisation}
 
 
-\subsection{Initial reductions}
+\subsection{Initial Reductions}
 
 
     As the points in our state space are six-dimensional vectors of the form of \cref{eq:stateVector},
@@ -34,13 +34,13 @@
 %%
 %%
 %%
-    Finally, when visualisation of our system is particularly important, we may further reduce our space to a two-dimensional set-up via the projection down to the $x,v_y$ plane. Similar as above, this is thought of as
+    Finally, when visualisation/conceptual understanding of our system is particularly important, we may further reduce our space to a two-dimensional set-up via the projection down to the $x,v_y$ plane. Similar as above, this is thought of as
     \begin{equation*}
          (x,v_x,v_y) \to (x,v_x).
     \end{equation*}
     
 
-    The entirety of this reduction is summed up in the following figure:
+    The entirety of this reduction is summed up in the following \cref{fig: reduction tikz}:
     \begin{figure}[ht]
         \centering
         
@@ -76,6 +76,7 @@
         \end{tikzpicture}
         
         \caption{Reduction of the state space dimension.}
+        \label{fig: reduction tikz}
     \end{figure}
 
 
@@ -89,9 +90,9 @@
 
 
 
-    \subsection{Constant energy regions} \label{subsec: constant energy regions}
+    \subsection{Constant Energy Regions} \label{subsec: constant energy regions}
 
-    As alluded to at the end of \cref{sec:CR3BP}, it follows from \cite{KoonLoMarsdenRoss2022} that for a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is given by the equation
+    As alluded to at the end of \cref{subsubsec: synodic frame}, it follows from \cite{KoonLoMarsdenRoss2022} that for a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is prescribed by the equation
     %%
     % For a general point of the form $(x,y,v_x,v_y) \in \R^4$, the energy thereof is given by the equation
     \begin{equation} \label{eq:energy}
@@ -119,10 +120,10 @@
     % % One particular such surface is that corresponding to the 
     % One particular such surface is that which corresponds to the energy level
     One particular such surface is that defined by
-    $$
+    \begin{equation} \label{eq: energy E2}
         % E_2 = \textcolor{red}{\textbf{WHAT IS THE VALUE (AND UNITS) FOR THE ENERGY AT L2????}},
         E_2 \approx -1.592,
-    $$
+    \end{equation}
     the energy value (in dimensionless CR3BP units) corresponding to the Lagrange point $L_2$. We refer to the region enclosed by this surface as the \textit{accessible region}, as it comprises all states of the form $(x,0,v_x,v_y)$ that have an energy level at or below $E_2$. 
     % As orbiting bodies with energies above that level may leave the Earth-Moon system, this informs the cut-off of the 
     As orbiting bodies with energies above this level may leave the Earth-Moon system, this defines the boundary of the scope of our current work.
@@ -185,7 +186,7 @@
 
 
 
-    \subsection{The crash region}
+    \subsection{The Crash Region}
 
 
 

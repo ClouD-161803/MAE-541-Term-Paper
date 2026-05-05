@@ -13,22 +13,14 @@ In the following, we provide an overview of normal form theory in the context of
 This section provides only a concise overview of the normal form transformations used in this work; a more complete theoretical description can be found in Sinha's dissertation \cite{Sinha2026}. 
 The methodology follows the numerical normal form framework developed by Jorba and Villanueva \cite{Jorba1998,Jorba1999}. 
 The implementation used in the present analysis was developed with contributions from Sinha \cite{Sinha2026} and is applied here to the examples considered below. 
-We describe the transformations at a high level and emphasize how the Hamiltonian changes at each step.
-For a Hamiltonian $H$, the equations of motion in canonical coordinates can be written as
-\begin{equation}
-    \dot{\boldsymbol{x}} = \boldsymbol{J} \nabla H(\boldsymbol{x}), \qquad
-    \boldsymbol{J} = \begin{pmatrix}
-    0 & I \\
-    - I & 0
-    \end{pmatrix},
-\end{equation}
-where $\boldsymbol{J}$ is the canonical symplectic matrix. 
-The coordinate transformations used below are symplectic, meaning that they preserve this canonical Hamiltonian structure.
+
+We describe the transformations at a high level and emphasize how the Hamiltonian changes at each step. As detailed in \cref{sec:EquilibriumPoints}, the CR3BP satisfies the Hamilton canonical equation \eqref{eq:hamilton_canonical_equation} with Hamiltonian $H$ defined in \eqref{eq:hamiltonian_definition}.
+In this section, we adopt the canonical coordinates $\boldsymbol{z} = (\boldsymbol{r}, \boldsymbol{p})$, where $\boldsymbol{p}$ is the canonical momentum (see \cref{sec:EquilibriumPoints} for definitions). The coordinate transformations used below are \emph{symplectic}, meaning that they preserve this canonical Hamiltonian structure.
 
 Let the periodic orbit be denoted by $\boldsymbol{\gamma}:\mathbb{R}\rightarrow\mathbb{R}^6$, with $\boldsymbol{\gamma}(t+T)=\boldsymbol{\gamma}(t)$. 
 The first step in constructing the normal form is to translate the periodic orbit to the origin using
 \begin{equation}
-    \boldsymbol{\xi}=\boldsymbol{x}-\boldsymbol{\gamma}(t).
+    \boldsymbol{\xi}=\boldsymbol{z}-\boldsymbol{\gamma}(t).
 \end{equation}
 The Hamiltonian in the translated coordinates, denoted by $K_1(t,\boldsymbol{\xi})$, is time dependent. 
 Expanding about $\boldsymbol{\xi}=0$ gives
@@ -67,7 +59,7 @@ In Floquet coordinates, the Hamiltonian takes the form
     = \frac{1}{2}\boldsymbol{\eta}^{\top} \boldsymbol{S} \boldsymbol{\eta} 
     + \sum_{d \ge 3} H_d^{(\boldsymbol{\eta})}(t,\boldsymbol{\eta}),
 \end{equation}
-where the quadratic part is now autonomous and $\boldsymbol{S}=-\boldsymbol{J}\boldsymbol{B}$.
+where the quadratic part is now autonomous and $\boldsymbol{S}=-\boldsymbol{J}\boldsymbol{B}$, and $\boldsymbol{J}$ is the symplectic matrix introduced in \cref{sec:EquilibriumPoints}.
 
 The remaining transformations remove higher-order nonresonant terms from the Hamiltonian. 
 At each degree $d$, this is done by solving the homological equation
@@ -133,11 +125,11 @@ The standard deviations are chosen as
 $\sigma_x = 10^{-6}\,\mathrm{DU}\,(384\,\mathrm{m})$, 
 $\sigma_{v_x} = 10^{-4}\,\mathrm{VU}\,(0.1\,\mathrm{m}/\mathrm{s})$, and
 $\sigma_{v_y} = 10^{-4}\,\mathrm{VU}\,(0.1\,\mathrm{m}/\mathrm{s})$.
-We draw $100$ samples from this distribution and map each sample to normal form coordinates using the transformations $\boldsymbol{x}\rightarrow\boldsymbol{u}$ described above. 
+We draw $100$ samples from this distribution and map each sample to normal form coordinates using the transformations $\boldsymbol{z}\rightarrow\boldsymbol{u}$ described above. 
 To limit the computational cost, the normal form is truncated at polynomial degree $D=4$, and the time-periodic coefficients are represented using a Fourier expansion of order $K=16$. 
 The samples are then propagated analytically in normal form coordinates for one orbital period. 
 For comparison, the same initial conditions are propagated in the synodic CR3BP coordinates using an adaptive step-size RK54 integrator. 
-To compare both propagation methods, the analytically propagated normal form trajectories are mapped back to the synodic frame through the inverse transformation $\boldsymbol{u}\rightarrow\boldsymbol{x}$ at the same time instances used by the numerical integrator. 
+To compare both propagation methods, the analytically propagated normal form trajectories are mapped back to the synodic frame through the inverse transformation $\boldsymbol{u}\rightarrow\boldsymbol{z}$ at the same time instances used by the numerical integrator. 
 The results are shown in \cref{fig:nf_comparison}.
 
 \begin{figure}[b!]

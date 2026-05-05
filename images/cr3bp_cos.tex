@@ -1,0 +1,54 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        axis equal image,
+        hide axis,
+        width=8cm, 
+        height=9cm,
+        clip=false,
+        axis lines=middle,
+        ticks=none
+    ]
+
+    % Masses m1 and m2
+    \addplot[mark=*, mark size=6pt, only marks, color=brown!90!red] coordinates {(-0.13, 0)}; 
+    \node at (axis cs:-0.13, 0.06) {$m_1$}; 
+    \node at (axis cs:-0.15, -0.07) {$(-\mu, 0, 0)$}; 
+    \addplot[mark=*, mark size=4pt, only marks, color=brown!90!red] coordinates {(0.41, 0)}; 
+    \node at (axis cs:0.41, 0.05) {$m_2$}; 
+    \node at (axis cs:0.46, -0.175) {$(1 - \mu, 0, 0)$}; 
+    \draw[] (axis cs:0.46, -0.15) -- (axis cs:0.42, -0.03);
+
+    % Adding nodes L4 and L5
+    \addplot[mark=x, mark size=3pt, thick, only marks, color=blue] coordinates {(0.14, 0.468)}; 
+    \node at (axis cs:0.2, 0.468) {$\mathcal{L}_4$};
+    
+    \addplot[mark=x, mark size=3pt, thick, only marks, color=blue] coordinates {(0.14, -0.468)}; 
+    \node at (axis cs:0.2, -0.468) {$\mathcal{L}_5$};
+
+    % Adding nodes L1,L2 and L3
+    \addplot[mark=x, mark size=3pt, thick, only marks, color=blue] coordinates {(0.3, 0)}; 
+    \node at (axis cs:0.3, 0.05) {$\mathcal{L}_1$};
+    
+    \addplot[mark=x, mark size=3pt, thick, only marks, color=blue] coordinates {(0.55, 0)}; 
+    \node at (axis cs:0.55, 0.05) {$\mathcal{L}_2$};
+
+    \addplot[mark=x, mark size=3pt, thick, only marks, color=blue] coordinates {(-0.5, 0)}; 
+    \node at (axis cs:-0.5, 0.05) {$\mathcal{L}_3$};
+    
+    % Point P
+    \addplot[mark=*, mark size=1.5pt, only marks, color=black] coordinates {(0.25, 0.275)}; 
+    \node at (axis cs:0.25, 0.315) {$P$}; 
+    \node at (axis cs:0.25, 0.235) {$(r_1, r_2, r_3)$}; 
+
+    % Axes
+    \draw[->, >=stealth, thick] (-0.55, 0) -- (0.8, 0) node[ below] {$r_1$}; 
+    \draw[->, >=stealth, thick] (0, -0.5) -- (0, 0.6) node[left] {$r_2$}; 
+    %\draw[->, >=stealth, thick] ($(0.07*1.4142, 0.07*1.4142)$) -- ($(-0.07*1.4142, -0.07*1.4142)$) node[below right] {$r_3$}; 
+
+    % Setting axis limits
+    \path (axis cs:-0.125,-0.1) rectangle (axis cs:0.6,0.5); 
+
+    \end{axis}
+\end{tikzpicture}
+
+%\end{document}

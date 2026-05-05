@@ -28,18 +28,20 @@
     The study of periodic orbits also supports the development of efficient long-term propagation methods for cislunar objects, for example through normal form theory.
 
 We study the CR3BP using several tools from dynamical systems theory.
-In particular, our project consists of the following components, with the main responsibility for each part indicated in brackets:
+In particular, our project consists of the following components:
 \begin{itemize}
-    \item \textbf{Equilibrium Points}: The CR3BP has five equilibrium points, commonly referred to as Lagrange or libration points. We will derive their locations, local linearisations of the vector field , and study their stability as a function of the mass ratio. (\textit{Claudio})
-    %\cref{Equation: CR3BP dynamical system}
+    % \item \textbf{Equilibrium Points}: The CR3BP has five equilibrium points, commonly referred to as Lagrange or libration points. We will derive their locations, local linearisations of the vector field , and study their stability as a function of the mass ratio.
+    % %\cref{Equation: CR3BP dynamical system}
+
+    \item \textbf{CR3BP Background and Analysis}: The CR3BP is a system with a rich historical background, we briefly cover it's origins, and progress into an analysis of the system's dynamics in both the inertial and synodic frames.
     
-    \item \textbf{Computing Periodic Orbits}: The CR3BP admits infinitely many periodic orbits \cite{Poincare_1957}. We will focus on planar periodic orbits, in particular resonant orbits and orbits around the libration points. Computing such orbits is not always straightforward because of their abundance and stability properties. We will generate a dataset of periodic orbits using differential correction together with informed initial guesses based on known orbit characteristics. (\textit{Jannik})
+    \item \textbf{Computing Periodic Orbits}: The CR3BP admits infinitely many periodic orbits \cite{Poincare_1893}. We will focus on planar periodic orbits, in particular resonant orbits and orbits around the libration points. Computing such orbits is not always straightforward because of their abundance and stability properties. We will generate a dataset of periodic orbits using differential correction together with informed initial guesses based on known orbit characteristics.
     
-    \item \textbf{Poincaré Map at $y=0$}: This part of the project focuses on the planar CR3BP (PCR3BP), which has a four-dimensional phase space. Introducing a Poincaré map at $y=0$ turns periodic orbits of the continuous system into fixed points of the map. This provides a useful tool for visualizing the families of periodic orbits computed in the previous section in a three-dimensional space and for studying how densely they populate different regions of phase space. (\textit{Jack})
+    \item \textbf{Poincaré Map at $y=0$}: This part of the project focuses on the planar CR3BP (PCR3BP), which has a four-dimensional phase space. Introducing a Poincaré map at $y=0$ turns periodic orbits of the continuous system into fixed points of the map. This provides a useful tool for visualizing the families of periodic orbits computed in the previous section in a three-dimensional space and for studying how densely they populate different regions of phase space.
     
-    \item \textbf{Poincaré Map at $y=0$ for Fixed Energy}: This component also focuses on the PCR3BP and aims to illustrate how the system dynamics depend on the energy level. We will study puncture points on a two-dimensional Poincaré map defined by fixing $y=0$ at a given energy level. By propagating a large number of initial conditions over long time spans, we aim to visualize how chaotic behaviour becomes more pronounced as the energy increases. (\textit{Jack})
+    \item \textbf{Poincaré Map at $y=0$ for Fixed Energy}: This component also focuses on the PCR3BP and aims to illustrate how the system dynamics depend on the energy level. We will study puncture points on a two-dimensional Poincaré map defined by fixing $y=0$ at a given energy level. By propagating a large number of initial conditions over long time spans, we aim to visualize how chaotic behaviour becomes more pronounced as the energy increases.
     
-    \item \textbf{Bifurcations of Periodic Orbits}: Families of periodic orbits undergo bifurcations as the mass parameter or orbit energy varies. In this part of the project, we will identify and visualize selected bifurcations within these families. (\textit{Claudio})
+    % \item \textbf{Bifurcations of Periodic Orbits}: Families of periodic orbits undergo bifurcations as the mass parameter or orbit energy varies. In this part of the project, we will identify and visualize selected bifurcations within these families.
     
-    \item \textbf{Normal Forms around Periodic Orbits}: By introducing a sequence of near-identity transformations to normal form coordinates, the dynamics near a periodic orbit can be simplified. This enables more efficient propagation in normal form coordinates, with potential applications to long-term uncertainty propagation. We will apply this approach to an example Lyapunov orbit around one of the libration points. (\textit{Jannik})
+    \item \textbf{Normal Forms around Periodic Orbits}: By introducing a sequence of near-identity transformations to normal form coordinates, the dynamics near a periodic orbit can be simplified. This enables more efficient propagation in normal form coordinates, with potential applications to long-term uncertainty propagation. We will apply this approach to an example Lyapunov orbit around one of the libration points.
 \end{itemize}
